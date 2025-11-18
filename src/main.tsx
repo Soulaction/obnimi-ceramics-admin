@@ -1,7 +1,12 @@
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <App />
-            </Provider>
-        </BrowserRouter>
-)
+import {createRoot} from "react-dom/client";
+import {RouterProvider} from "react-router-dom";
+import {router} from "./app/Router";
+
+const root = document.getElementById("root");
+
+if(!root) {
+    throw new Error('root not found')
+}
+
+const container = createRoot(root);
+container.render(<RouterProvider router={router}/>)
