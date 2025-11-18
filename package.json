@@ -2,16 +2,19 @@
   "name": "obnimi-ceramics-admin",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "",
+    "build": ""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^2.10.1",
     "axios": "^1.13.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.9.6"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
