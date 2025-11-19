@@ -1,8 +1,6 @@
-import {buildWebpack} from "../../../../Users/Dmitry/IdeaProjects/obnimi-ceramics-admin/src/app/build-config";
-import {BuildMode, BuildPaths, BuildPlatform} from "../../../../Users/Dmitry/IdeaProjects/obnimi-ceramics-admin/src/app/build-config";
 import path from "path";
 import webpack from "webpack";
-import packageJson from "./package.json";
+import {BuildMode, BuildPaths, BuildPlatform, buildWebpack} from "./src/app/build-config";
 
 interface EnvVariables {
     mode: BuildMode,
