@@ -8,44 +8,40 @@ export const getUserById = createAsyncThunk<UserType, string,
         rejectValue: string;
     }>(
     'user/getUserById',
-    async (userId) => {
+    async (userId: string) => {
         const {data} = await userApiService.getUserById(userId);
         return data;
     },
 )
 
-export const getAllUser = createAsyncThunk<BasketItemModel, string,
-    {
-        state: RootState;
-        rejectValue: string;
-    }>(
+export const getAllUser = createAsyncThunk<UserType[], void>(
     'user/getAllUser',
-    async (deviceId) => {
-        const {data} = await getAllUser({userId: getState().userInfo.user.id, deviceId});
+    async () => {
+        const {data} = await userApiService.getAllUser();
         return data;
     },
 )
 
-export const createUser = createAsyncThunk<BasketItemModel, string,
+export const createUser = createAsyncThunk<UserType, UserType,
     {
         state: RootState;
         rejectValue: string;
     }>(
     'user/createUser',
-    async (deviceId) => {
-        const {data} = await createUser({userId: getState().userInfo.user.id, deviceId});
+    async (user: UserType) => {
+        const {data} = await userApiService.createUser(user);
         return data;
     },
 )
 
-export const updateUser = createAsyncThunk<BasketItemModel, string,
+export const updateUser = createAsyncThunk<UserType, UserType,
     {
         state: RootState;
         rejectValue: string;
     }>(
     'user/updateUser',
-    async (deviceId) => {
-        const {data} = await updateUser({userId: getState().userInfo.user.id, deviceId});
+    async (user: UserType) => {
+        const {data} = await userApiService.updateUser(user);
         return data;
     },
 )
@@ -53,12 +49,11 @@ export const updateUser = createAsyncThunk<BasketItemModel, string,
 export const deleteUser = createAsyncThunk<string, string,
     {
         state: RootState;
-        rejectValue: string;
     }>(
     'user/deleteUser',
-    async (idItemBasket, {getState}) => {
-        await deleteBasket(idItemBasket);
-        const basketItem: BasketItemModel[] = getState().basket.basketItems.filter(el => el.id !== idItemBasket);
-        return basketItem;
+    async (idItemBasket: string, {getState}: {getState: RootState}) => {
+        await deleteUser(idItemBasket);
+        const state = getState();
+        return state.user.users.filter(el => el.id !== idItemBasket);
     },
 )

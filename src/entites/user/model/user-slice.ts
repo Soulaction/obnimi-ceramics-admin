@@ -1,49 +1,65 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {BasketItemModel} from "../../model/BasketItemModel";
-import {addBasketItems, deleteBasketItems, fetchBasketItems} from "./user-thunk";
+import {getAllUser, getUserById} from "./user-thunk";
+import {UserType} from "../type/User.type";
 
-export type BasketStore = {
-    basketItems: BasketItemModel[];
-    isLoading: boolean,
-    errorMsg: string | null
+export type UserStore = {
+    users: UserType[];
+    selectedUser: UserType | null;
+    isLoadingItems: boolean,
+    isLoadingItem: boolean,
+    filterData: FilterData | null;
 }
 
-const initialState: BasketStore = {
-    basketItems: [],
-    isLoading: false,
-    errorMsg: ''
+export type FilterData = {
+    searchRow: string;
+    minPrice: number;
+    maxPrice: number,
+    productTypeId: number,
+    productCategoryId: number,
+    page: number;
+    size: number;
+}
+
+const initialState: UserStore = {
+    users: [],
+    selectedUser: null,
+    isLoadingItems: false,
+    isLoadingItem: false,
+    filterData: null
 
 }
 const userSlice = createSlice({
-    name: 'basket',
+    name: 'user',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(fetchBasketItems.fulfilled, (state: BasketStore, action: PayloadAction<BasketItemModel[]>) => {
-            state.isLoading = false;
-            state.basketItems = action.payload;
-            state.errorMsg = null;
+        builder.addMatcher((action) => {
+            console.log(action);
+            return true
+        }, () => {
         })
-        builder.addCase(addBasketItems.fulfilled, (state: BasketStore, action: PayloadAction<BasketItemModel>) => {
-            state.isLoading = false;
-            state.basketItems.push(action.payload);
-            state.errorMsg = null;
+        builder.addCase(getUserById.pending, (state: UserStore, action: PayloadAction<UserType>) => {
+            console.log(action.payload);
+            state.isLoadingItem = true;
         })
-        builder.addCase(deleteBasketItems.fulfilled, (state: BasketStore, action: PayloadAction<BasketItemModel[]>) => {
-            state.isLoading = false;
-            state.basketItems = action.payload;
-            state.errorMsg = null;
+        builder.addCase(getUserById.fulfilled, (state: UserStore, action: PayloadAction<UserType>) => {
+            state.isLoadingItem = false;
+            state.selectedUser = action.payload;
         })
-        builder.addMatcher((action) => action.type.endsWith('/pending'),
-            (state: BasketStore) => {
-            state.isLoading = true
+        builder.addCase(getAllUser.pending, (state: UserStore, action: PayloadAction<UserType[]>) => {
+            state.isLoadingItems = false;
+            state.users = action.payload;
+        })
+        builder.addCase(getAllUser.fulfilled, (state: UserStore, action: PayloadAction<UserType[]>) => {
+            state.isLoadingItems = false;
+            state.users = action.payload;
         })
         builder.addMatcher((action) => action.type.endsWith('/rejected'),
             (state: BasketStore, action: PayloadAction<string>) => {
-            state.isLoading = false
-            state.errorMsg = action.payload as string;
-        })
+                state.isLoading = false
+                state.errorMsg = action.payload as string;
+            })
     },
 })
 
-export const basketReducer = userSlice.reducer;
+export const userReducer = userSlice.reducer;

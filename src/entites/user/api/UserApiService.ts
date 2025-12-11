@@ -25,8 +25,8 @@ class UserApiService {
         return await axiosInstanceServer.patch(this.contextPath, user);
     }
 
-    async deleteUser(id: string): Promise<AxiosResponse<UserType>> {
-        return await axiosInstanceServer.patch(`${this.contextPath}/${id}`);
+    async deleteUser(id: string): Promise<AxiosResponse<void>> {
+        await axiosInstanceServer.patch(`${this.contextPath}/${id}`);
     }
 }
 

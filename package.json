@@ -2,6 +2,7 @@
   "name": "obnimi-ceramics-admin",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
     "start": "webpack serve --env mode=development",
     "build:dev": "webpack --env mode=development",
@@ -10,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@reduxjs/toolkit": "^2.10.1",
+    "@reduxjs/toolkit": "^2.11.1",
     "axios": "^1.13.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -25,6 +26,7 @@
     "@types/dotenv-webpack": "^7.0.8",
     "@types/react": "^19.2.6",
     "@types/react-dom": "^19.2.3",
+    "@types/react-redux": "^7.1.34",
     "@types/webpack": "^5.28.5",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/webpack-dev-server": "^4.7.1",
