@@ -8,6 +8,7 @@ export type UserStore = {
     isLoadingItems: boolean,
     isLoadingItem: boolean,
     filterData: FilterData | null;
+    error: string | null;
 }
 
 export type FilterData = {
@@ -25,7 +26,8 @@ const initialState: UserStore = {
     selectedUser: null,
     isLoadingItems: false,
     isLoadingItem: false,
-    filterData: null
+    filterData: null,
+    error: null
 
 }
 const userSlice = createSlice({
@@ -38,26 +40,44 @@ const userSlice = createSlice({
             return true
         }, () => {
         })
-        builder.addCase(getUserById.pending, (state: UserStore, action: PayloadAction<UserType>) => {
-            console.log(action.payload);
-            state.isLoadingItem = true;
+        builder.addAsyncThunk(getUserById, {
+            pending: (state, action) => {
+                console.log(action.payload);
+                state.isLoadingItem = true;
+            },
+            fulfilled: (state, action) => {
+                console.log(action.payload);
+                state.selectedUser = action.payload
+            },
+            rejected: (state, action) => {
+                console.log(action);
+                // state.error = action.error.
+            },
+            settled: (state, action) => {
+                console.log(action);
+            },
         })
-        builder.addCase(getUserById.fulfilled, (state: UserStore, action: PayloadAction<UserType>) => {
-            state.isLoadingItem = false;
-            state.selectedUser = action.payload;
-        })
-        builder.addCase(getAllUser.pending, (state: UserStore, action: PayloadAction<UserType[]>) => {
-            state.isLoadingItems = false;
-            state.users = action.payload;
-        })
-        builder.addCase(getAllUser.fulfilled, (state: UserStore, action: PayloadAction<UserType[]>) => {
-            state.isLoadingItems = false;
-            state.users = action.payload;
+        builder.addAsyncThunk(getAllUser, {
+            pending: (state, action) => {
+                console.log(action.payload);
+                state.isLoadingItems = true;
+            },
+            fulfilled: (state, action) => {
+                console.log(action.payload);
+                state.users = action.payload
+            },
+            rejected: (state, action) => {
+                console.log(action);
+                // state.error = action.error.
+                state.isLoadingItems = false;
+            },
+            settled: (state, action) => {
+                console.log(action);
+            },
         })
         builder.addMatcher((action) => action.type.endsWith('/rejected'),
-            (state: BasketStore, action: PayloadAction<string>) => {
-                state.isLoading = false
-                state.errorMsg = action.payload as string;
+            (state, action) => {
+                console.log(state, action);
             })
     },
 })

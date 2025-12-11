@@ -1,14 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {userApiService} from "../api/UserApiService";
 import {UserType} from "../type/User.type";
-import {RootState} from "../../../app/store";
+import {RootState} from "../../../app/store/store";
 
 export const getUserById = createAsyncThunk<UserType, string,
     {
         rejectValue: string;
     }>(
     'user/getUserById',
-    async (userId: string) => {
+    async (userId) => {
         const {data} = await userApiService.getUserById(userId);
         return data;
     },
@@ -28,9 +28,9 @@ export const createUser = createAsyncThunk<UserType, UserType,
         rejectValue: string;
     }>(
     'user/createUser',
-    async (user: UserType) => {
+    async (user) => {
         const {data} = await userApiService.createUser(user);
-        return data;
+        return {...user, id: data};
     },
 )
 
@@ -40,18 +40,18 @@ export const updateUser = createAsyncThunk<UserType, UserType,
         rejectValue: string;
     }>(
     'user/updateUser',
-    async (user: UserType) => {
+    async (user) => {
         const {data} = await userApiService.updateUser(user);
         return data;
     },
 )
 
-export const deleteUser = createAsyncThunk<string, string,
+export const deleteUser = createAsyncThunk<UserType[], string,
     {
         state: RootState;
     }>(
     'user/deleteUser',
-    async (idItemBasket: string, {getState}: {getState: RootState}) => {
+    async (idItemBasket, {getState}) => {
         await deleteUser(idItemBasket);
         const state = getState();
         return state.user.users.filter(el => el.id !== idItemBasket);
