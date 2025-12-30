@@ -2,7 +2,6 @@
   "name": "obnimi-ceramics-admin",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "scripts": {
     "start": "webpack serve --env mode=development",
     "build:dev": "webpack --env mode=development",

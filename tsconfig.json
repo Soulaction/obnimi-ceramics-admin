@@ -2,13 +2,12 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
-    "module": "esnext",
+    "module": "nodenext",
     "target": "esnext",
     "strict": true,
     "jsx": "react-jsx",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "bundler"
+    "allowSyntheticDefaultImports": true
   }
 }

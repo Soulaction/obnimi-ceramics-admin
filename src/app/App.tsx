@@ -1,11 +1,12 @@
 import React from 'react';
 import {Provider} from "react-redux";
-import {store} from "./store";
+import {store} from "./store/store";
+import {Outlet} from "react-router-dom";
 
 const App = () => {
     return (
         <Provider store={store}>
-            Hello, IdeaProjects!
+            <Outlet/>
         </Provider>
     );
 };

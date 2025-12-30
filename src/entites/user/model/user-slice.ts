@@ -8,7 +8,6 @@ export type UserStore = {
     isLoadingItems: boolean,
     isLoadingItem: boolean,
     filterData: FilterData | null;
-    error: string | null;
 }
 
 export type FilterData = {
@@ -26,20 +25,14 @@ const initialState: UserStore = {
     selectedUser: null,
     isLoadingItems: false,
     isLoadingItem: false,
-    filterData: null,
-    error: null
-
+    filterData: null
 }
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addMatcher((action) => {
-            console.log(action);
-            return true
-        }, () => {
-        })
         builder.addAsyncThunk(getUserById, {
             pending: (state, action) => {
                 console.log(action.payload);
@@ -52,33 +45,23 @@ const userSlice = createSlice({
             rejected: (state, action) => {
                 console.log(action);
                 // state.error = action.error.
-            },
-            settled: (state, action) => {
-                console.log(action);
-            },
+            }
         })
         builder.addAsyncThunk(getAllUser, {
             pending: (state, action) => {
-                console.log(action.payload);
+                console.log(action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
-                console.log(action.payload);
+                console.log(action);
                 state.users = action.payload
             },
             rejected: (state, action) => {
                 console.log(action);
                 // state.error = action.error.
                 state.isLoadingItems = false;
-            },
-            settled: (state, action) => {
-                console.log(action);
-            },
+            }
         })
-        builder.addMatcher((action) => action.type.endsWith('/rejected'),
-            (state, action) => {
-                console.log(state, action);
-            })
     },
 })
 
