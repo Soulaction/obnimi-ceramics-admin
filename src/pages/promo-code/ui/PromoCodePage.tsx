@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Product = () => {
+const PromoCodePage = () => {
     return (
         <section>
-            Product
+            PromoCode
         </section>
     );
 };
 
-export default Product;
+export default PromoCodePage;

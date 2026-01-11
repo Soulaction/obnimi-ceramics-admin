@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Orders = () => {
+const ProductTypePage = () => {
     return (
         <section>
-            Orders
+            ProductType
         </section>
     );
 };
 
-export default Orders;
+export default ProductTypePage;

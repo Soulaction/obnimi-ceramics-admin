@@ -1,11 +1,11 @@
 import {createBrowserRouter, RouteObject, Navigate} from "react-router-dom";
 import App from "./App";
-import User from "../pages/users/ui/User";
-import Product from "../pages/product/ui/Product";
-import ProductType from "../pages/product-type/ui/ProductType";
-import ProductCategory from "../pages/product-category/ui/ProductCategory";
-import PromoCode from "../pages/promo-code/ui/PromoCode";
-import Orders from "../pages/orders/ui/Orders";
+import UserPage from "../pages/users/ui/UserPage";
+import ProductPage from "../pages/product/ui/ProductPage";
+import ProductTypePage from "../pages/product-type/ui/ProductTypePage";
+import ProductCategoryPage from "../pages/product-category/ui/ProductCategoryPage";
+import PromoCodePage from "../pages/promo-code/ui/PromoCodePage";
+import OrdersPage from "../pages/orders/ui/OrdersPage";
 
 
 const routes: RouteObject[] = [
@@ -16,27 +16,27 @@ const routes: RouteObject[] = [
             { path: '', element: <Navigate to="/product" replace /> },
             {
                 path: '/user',
-                element: <User/>,
+                element: <UserPage/>,
             },
             {
                 path: '/product',
-                element: <Product/>,
+                element: <ProductPage/>,
             },
             {
                 path: '/product-type',
-                element: <ProductType/>,
+                element: <ProductTypePage/>,
             },
             {
                 path: '/product-category',
-                element: <ProductCategory/>,
+                element: <ProductCategoryPage/>,
             },
             {
                 path: '/promo-code',
-                element: <PromoCode/>,
+                element: <PromoCodePage/>,
             },
             {
                 path: '/orders',
-                element: <Orders/>,
+                element: <OrdersPage/>,
             },
             { path: '*', element: <Navigate to="/product" replace /> },
         ]

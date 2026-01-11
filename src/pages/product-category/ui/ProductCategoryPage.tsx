@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductCategory = () => {
+const ProductCategoryPage = () => {
     return (
         <section>
             ProductCategory
@@ -8,4 +8,4 @@ const ProductCategory = () => {
     );
 };
 
-export default ProductCategory;
+export default ProductCategoryPage;
