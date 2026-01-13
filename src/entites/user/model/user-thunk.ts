@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {userApiService} from "../api/UserApiService";
-import {UserType} from "../type/User.type";
+import {UserType} from "../type/user.type";
 import {RootState} from "../../../app/store/store";
 
 export const getUserById = createAsyncThunk<UserType, string,

@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getAllUser, getUserById} from "./user-thunk";
-import {UserType} from "../type/User.type";
+import {UserType} from "../type/user.type";
 
 export type UserStore = {
     users: UserType[];

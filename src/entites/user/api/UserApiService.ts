@@ -1,5 +1,5 @@
 import {AxiosResponse} from "axios";
-import {UserType} from "../type/User.type";
+import {UserType} from "../type/user.type";
 import {axiosInstanceServer} from "../../../shared/axios-instance";
 
 class UserApiService {
