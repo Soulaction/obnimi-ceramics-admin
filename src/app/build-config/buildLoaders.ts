@@ -10,7 +10,7 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions['rules'] => {
     return [
         buildBabelLoader(),
         {
-            test: /\.css$/i,
+            test: /\.module\.css$/i,
             use: [
                 isDev ? "style-loader" : MiniCssExtractPlugin.loader,
                 {
@@ -21,6 +21,14 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions['rules'] => {
                         }
                     },
                 }
+            ],
+        },
+        {
+            test: /\.css$/i,
+            exclude: /\.module\.css$/,
+            use: [
+                "style-loader",
+                "css-loader"
             ],
         },
         {
