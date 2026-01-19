@@ -1,16 +1,16 @@
-import React, {FC, useEffect} from 'react';
+import {FC, useEffect} from 'react';
 import {Table} from 'ui-kit-dynamics';
-import {columnsUserTable} from "../../../../features/const/const";
 import {useAppDispatch, useAppSelector} from "../../../../app/store/hooks";
 import {getAllUser} from "../../model/user-thunk";
 import {UserTableBtn} from "../UserTableBtn/UserTableBtn";
 import {UserTableBtnType} from "../../type/userTable.type";
+import {columnsUserTable} from "../../const/const";
 
 type UserTableBtnProps = {
-    clickCallback: (userTableBtn: UserTableBtnType) => void;
+    clickUserTableBtn: (userTableBtn: UserTableBtnType) => void;
 }
 
-export const UserTable: FC<UserTableBtnProps> = ({clickCallback}) => {
+export const UserTable: FC<UserTableBtnProps> = ({clickUserTableBtn}) => {
     const dispatch = useAppDispatch();
     const {users, isLoadingItems} = useAppSelector(state => state.user);
 
@@ -20,8 +20,7 @@ export const UserTable: FC<UserTableBtnProps> = ({clickCallback}) => {
 
     return (
         <Table column={columnsUserTable}
-               title=""
-               TemplateHeader={<UserTableBtn clickCallback={clickCallback}></UserTableBtn>}
+               TemplateHeader={<UserTableBtn clickCallback={clickUserTableBtn}></UserTableBtn>}
                rowKey={'id'}
                value={users}/>
     );
