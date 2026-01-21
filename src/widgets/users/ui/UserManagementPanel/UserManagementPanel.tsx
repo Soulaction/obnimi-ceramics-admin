@@ -2,28 +2,27 @@ import React, {useState} from 'react';
 import {UserTable} from "../../../../entites/user/ui/UsersTable/UserTable";
 import {UserTableBtnType} from "../../../../entites/user/type/userTable.type";
 import {Dialog} from "ui-kit-dynamics";
+import {UserCreateAnaUpdateModal} from "../../../../entites/user/ui/UserCreateAnaUIpdateModal/UserCreateAnaUpdateModal";
 
 export const UserManagementPanel = () => {
 
-    const [isOpenCrateModal, setIsOpenCrateModal] = useState<boolean>(false);
+    const [isOpenCrateOrUpdateModal, setIsOpenCrateOrUpdateModal] = useState<boolean>(false);
 
     const openModal = (typeModal: UserTableBtnType) => {
         if (typeModal === 'plus') {
-            setIsOpenCrateModal(true);
+            setIsOpenCrateOrUpdateModal(true);
         }
     }
 
     const hidePlusModal = () => {
-        setIsOpenCrateModal(false);
+        setIsOpenCrateOrUpdateModal(false);
     }
 
     return (
         <>
             <UserTable clickUserTableBtn={openModal}/>
-            <Dialog header="Добавление пользователя"
-                    visible={isOpenCrateModal}
-                    onHide={hidePlusModal}
-            />
+            <UserCreateAnaUpdateModal isOpen={isOpenCrateOrUpdateModal}
+                                      hideModal={hidePlusModal}/>
         </>
     );
 };

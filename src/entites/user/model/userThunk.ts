@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {userApiService} from "../api/UserApiService";
-import {UserType} from "../type/user.type";
+import {CreateUserType, UserType} from "../type/user.type";
 import {RootState} from "../../../app/store/store";
 
 export const getUserById = createAsyncThunk<UserType, string,
@@ -22,15 +22,16 @@ export const getAllUser = createAsyncThunk<UserType[], void>(
     },
 )
 
-export const createUser = createAsyncThunk<UserType, UserType,
+export const createUser = createAsyncThunk<UserType[], CreateUserType,
     {
         state: RootState;
         rejectValue: string;
     }>(
     'user/createUser',
-    async (user) => {
+    async (user, {getState}) => {
         const {data} = await userApiService.createUser(user);
-        return {...user, id: data};
+        const users: RootState = getState();
+        return [data, ...users.user.users];
     },
 )
 

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {getAllUser, getUserById} from "./user-thunk";
+import {createUser, getAllUser, getUserById} from "./userThunk";
 import {UserType} from "../type/user.type";
 
 export type UserStore = {
@@ -39,7 +39,7 @@ const userSlice = createSlice({
                 state.isLoadingItem = true;
             },
             fulfilled: (state, action) => {
-                console.log(action.payload);
+                console.log(action);
                 state.selectedUser = action.payload
             },
             rejected: (state, action) => {
@@ -48,6 +48,21 @@ const userSlice = createSlice({
             }
         })
         builder.addAsyncThunk(getAllUser, {
+            pending: (state, action) => {
+                console.log(action);
+                state.isLoadingItems = true;
+            },
+            fulfilled: (state, action) => {
+                console.log(action);
+                state.users = action.payload
+            },
+            rejected: (state, action) => {
+                console.log(action);
+                // state.error = action.error.
+                state.isLoadingItems = false;
+            }
+        })
+        builder.addAsyncThunk(createUser, {
             pending: (state, action) => {
                 console.log(action);
                 state.isLoadingItems = true;

@@ -11,7 +11,13 @@ export type UserType = {
     updatedAt: string;
 }
 
-const Roles = {
+export type CreateUserType = Omit<UserType, "id" | 'createdAt' | 'updatedAt'> & {
+    lastName?: string;
+    firstName?: string;
+    phone?: string;
+}
+
+export const Roles = {
     user: 'user',
     admin: 'admin',
     worker: 'worker',

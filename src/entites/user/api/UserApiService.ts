@@ -1,5 +1,5 @@
 import {AxiosResponse} from "axios";
-import {UserType} from "../type/user.type";
+import {CreateUserType, UserType} from "../type/user.type";
 import {axiosInstanceServer} from "../../../shared/axios-instance";
 
 class UserApiService {
@@ -17,11 +17,11 @@ class UserApiService {
         return await axiosInstanceServer.get(this.contextPath);
     }
 
-    async createUser(user: UserType): Promise<AxiosResponse<string>> {
+    async createUser(user: CreateUserType): Promise<AxiosResponse<UserType>> {
         return await axiosInstanceServer.post(this.contextPath, user);
     }
 
-    async updateUser(user: UserType): Promise<AxiosResponse<UserType>> {
+    async updateUser(user: CreateUserType): Promise<AxiosResponse<UserType>> {
         return await axiosInstanceServer.patch(this.contextPath, user);
     }
 
