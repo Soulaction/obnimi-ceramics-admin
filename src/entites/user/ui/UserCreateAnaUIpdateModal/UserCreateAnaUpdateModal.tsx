@@ -1,9 +1,11 @@
 import * as s from './UserCreateAnaUpdateModal.module.css';
-import {FC, useEffect, useState} from 'react';
+import {FC, useEffect, useState, FormEvent} from 'react';
 import {Dialog, InputText, Dropdown, Button} from 'ui-kit-dynamics';
 import {CreateUserType, Roles, UserType} from "../../type/user.type";
 import {useAppDispatch} from "../../../../app/store/hooks";
 import {createUser} from "../../model/userThunk";
+import InputWithLabel from "../../../../shared/ui/InputWithLabel/InputWithLabel";
+import DropdownWithLabel from "../../../../shared/ui/DropdownWithLabel/DropdownWithLabel";
 
 type UserCreateAnaUpdateModalProps = {
     isOpen: boolean;
@@ -48,7 +50,8 @@ export const UserCreateAnaUpdateModal: FC<UserCreateAnaUpdateModalProps> = ({isO
         setNewUser(prev => ({...prev, [controlName]: value}));
     }
 
-    const saveData = () => {
+    const saveData = (evt: FormEvent) => {
+        evt.preventDefault();
         if (updateUser) {
 
         } else {
@@ -62,30 +65,41 @@ export const UserCreateAnaUpdateModal: FC<UserCreateAnaUpdateModalProps> = ({isO
                 visible={isOpen}
                 onHide={hideModal}
         >
-            <form className={s.form}>
+            <form className={s.form}
+                  onSubmit={saveData}>
                 <div className={s.formFields}>
-                    <InputText value={newUser.email}
-                               onChange={(evt) => changeData('email', evt.target.value)}
+                    <InputWithLabel label="Email"
+                                    controlName="email"
+                                    value={newUser.email}
+                                    changeData={changeData}
                     />
-                    <InputText value={newUser.firstName}
-                               onChange={(evt) => changeData('firstName', evt.target.value)}
+                    <InputWithLabel label="Имя"
+                                    controlName="firstName"
+                                    value={newUser.firstName}
+                                    changeData={changeData}
                     />
-                    <InputText value={newUser.lastName}
-                               onChange={(evt) => changeData('lastName', evt.target.value)}
+                    <InputWithLabel label="Имя"
+                                    controlName="lastName"
+                                    value={newUser.lastName}
+                                    changeData={changeData}
                     />
-                    <InputText value={newUser.phone}
-                               onChange={(evt) => changeData('phone', evt.target.value)}
+                    <InputWithLabel label="Имя"
+                                    controlName="phone"
+                                    value={newUser.phone}
+                                    changeData={changeData}
                     />
-                    <Dropdown rowKey="value"
-                              label="value"
-                              items={listRole}
-                              selectItem={newUser.role}
-                              selectedItem={(item) => changeData('role', item)}
+                    <DropdownWithLabel rowKey="value"
+                                       controlName="role"
+                                       label="Роль"
+                                       itemLabel="value"
+                                       itemValue="value"
+                                       value={newUser.role}
+                                       items={listRole}
+                                       changeData={changeData}
                     />
                 </div>
                 <div className={s.formFooter}>
-                    <Button label={updateUser ? 'Изменить' : 'Сохранить'}
-                            onClick={saveData}/>
+                    <Button label={updateUser ? 'Изменить' : 'Сохранить'}/>
                 </div>
             </form>
         </Dialog>
