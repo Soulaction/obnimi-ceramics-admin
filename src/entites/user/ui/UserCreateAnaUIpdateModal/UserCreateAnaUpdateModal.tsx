@@ -10,7 +10,7 @@ import DropdownWithLabel from "../../../../shared/ui/DropdownWithLabel/DropdownW
 type UserCreateAnaUpdateModalProps = {
     isOpen: boolean;
     hideModal: () => void;
-    updateUser?: UserType
+    updateUser: UserType | null
 }
 
 const listRole = [
