@@ -1,16 +1,16 @@
 import * as s from './UserCreateAnaUpdateModal.module.css';
-import {FC, useEffect, useState, FormEvent} from 'react';
-import {Dialog, InputText, Dropdown, Button} from 'ui-kit-dynamics';
-import {CreateUserType, Roles, UserType} from "../../type/user.type";
+import {FC, FormEvent, useEffect, useState} from 'react';
+import {Button, Dialog} from 'ui-kit-dynamics';
+import {CreateOrUpdateUserType, Roles, UserType} from "../../type/user.type";
 import {useAppDispatch} from "../../../../app/store/hooks";
-import {createUser} from "../../model/userThunk";
+import {createUser, updateUser} from "../../model/userThunk";
 import InputWithLabel from "../../../../shared/ui/InputWithLabel/InputWithLabel";
 import DropdownWithLabel from "../../../../shared/ui/DropdownWithLabel/DropdownWithLabel";
 
 type UserCreateAnaUpdateModalProps = {
     isOpen: boolean;
     hideModal: () => void;
-    updateUser: UserType | null
+    changeUser: UserType | null
 }
 
 const listRole = [
@@ -26,6 +26,7 @@ const listRole = [
 ];
 
 const initCreateUser = {
+    id: '',
     email: '',
     firstName: '',
     lastName: '',
@@ -33,35 +34,35 @@ const initCreateUser = {
     role: Roles.user
 };
 
-export const UserCreateAnaUpdateModal: FC<UserCreateAnaUpdateModalProps> = ({isOpen, hideModal, updateUser}) => {
+export const UserCreateAnaUpdateModal: FC<UserCreateAnaUpdateModalProps> = ({isOpen, hideModal, changeUser}) => {
 
     const dispatch = useAppDispatch();
-    const [newUser, setNewUser] = useState<CreateUserType>(initCreateUser);
+    const [newUser, setNewUser] = useState<CreateOrUpdateUserType>(initCreateUser);
 
     useEffect(() => {
-        if (updateUser) {
-            setNewUser(updateUser);
+        if (changeUser) {
+            setNewUser(changeUser);
         } else {
             setNewUser(initCreateUser);
         }
-    }, []);
+    }, [changeUser]);
 
-    const changeData = (controlName: keyof CreateUserType, value: string) => {
+    const changeData = (controlName: keyof CreateOrUpdateUserType, value: string) => {
         setNewUser(prev => ({...prev, [controlName]: value}));
     }
 
     const saveData = (evt: FormEvent) => {
         evt.preventDefault();
-        if (updateUser) {
-
+        if (changeUser) {
+            dispatch(updateUser(newUser)).unwrap().then(() => hideModal());
         } else {
             dispatch(createUser(newUser));
         }
     }
 
-
+    console.log(changeUser);
     return (
-        <Dialog header="Добавление пользователя"
+        <Dialog header={changeUser ? 'Корректировка пользователя' : 'Добавление пользователя'}
                 visible={isOpen}
                 onHide={hideModal}
         >
@@ -69,37 +70,31 @@ export const UserCreateAnaUpdateModal: FC<UserCreateAnaUpdateModalProps> = ({isO
                   onSubmit={saveData}>
                 <div className={s.formFields}>
                     <InputWithLabel label="Email"
-                                    controlName="email"
                                     value={newUser.email}
-                                    changeData={changeData}
+                                    onChange={(evt) => changeData("email", evt.target.value)}
                     />
                     <InputWithLabel label="Имя"
-                                    controlName="firstName"
                                     value={newUser.firstName}
-                                    changeData={changeData}
+                                    onChange={(evt) => changeData("firstName", evt.target.value)}
                     />
-                    <InputWithLabel label="Имя"
-                                    controlName="lastName"
+                    <InputWithLabel label="Фамилия"
                                     value={newUser.lastName}
-                                    changeData={changeData}
+                                    onChange={(evt) => changeData("lastName", evt.target.value)}
                     />
-                    <InputWithLabel label="Имя"
-                                    controlName="phone"
+                    <InputWithLabel label="Телефон"
                                     value={newUser.phone}
-                                    changeData={changeData}
+                                    onChange={(evt) => changeData("phone", evt.target.value)}
                     />
                     <DropdownWithLabel rowKey="value"
-                                       controlName="role"
                                        label="Роль"
                                        itemLabel="value"
                                        itemValue="value"
-                                       value={newUser.role}
+                                       selectItem={newUser.role}
                                        items={listRole}
-                                       changeData={changeData}
-                    />
+                                       selectedItem={changeData.bind(null, "role")}/>
                 </div>
                 <div className={s.formFooter}>
-                    <Button label={updateUser ? 'Изменить' : 'Сохранить'}/>
+                    <Button label={changeUser ? 'Изменить' : 'Сохранить'}/>
                 </div>
             </form>
         </Dialog>

@@ -11,7 +11,7 @@ export type UserType = {
     updatedAt: string;
 }
 
-export type CreateUserType = Omit<UserType, "id" | 'createdAt' | 'updatedAt'> & {
+export type CreateOrUpdateUserType = Omit<UserType, 'createdAt' | 'updatedAt'> & {
     lastName?: string;
     firstName?: string;
     phone?: string;

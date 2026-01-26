@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {userApiService} from "../api/UserApiService";
-import {CreateUserType, UserType} from "../type/user.type";
+import {CreateOrUpdateUserType, UserType} from "../type/user.type";
 import {RootState} from "../../../app/store/store";
 
 export const getUserById = createAsyncThunk<UserType, string,
@@ -22,7 +22,7 @@ export const getAllUser = createAsyncThunk<UserType[], void>(
     },
 )
 
-export const createUser = createAsyncThunk<UserType[], CreateUserType,
+export const createUser = createAsyncThunk<UserType[], CreateOrUpdateUserType,
     {
         state: RootState;
         rejectValue: string;
@@ -35,7 +35,7 @@ export const createUser = createAsyncThunk<UserType[], CreateUserType,
     },
 )
 
-export const updateUser = createAsyncThunk<UserType, UserType,
+export const updateUser = createAsyncThunk<UserType, CreateOrUpdateUserType,
     {
         state: RootState;
         rejectValue: string;
@@ -53,7 +53,7 @@ export const deleteUser = createAsyncThunk<UserType[], string,
     }>(
     'user/deleteUser',
     async (idItemBasket, {getState}) => {
-        await deleteUser(idItemBasket);
+        await userApiService.deleteUser(idItemBasket);
         const state = getState();
         return state.user.users.filter(el => el.id !== idItemBasket);
     },

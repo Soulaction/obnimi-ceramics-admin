@@ -4,28 +4,21 @@ import {FC} from "react";
 
 type InputWithLabelProps = {
     label: string
-    controlName: string;
-    value: string;
-    changeData: <T>(controlName: T, value: string) => void
 } & InputProps;
 
 const InputWithLabel: FC<InputWithLabelProps> = ({
-                                                           label,
-                                                           controlName,
-                                                           value,
-                                                           changeData,
-                                                           ...props
-                                                       }) => {
+                                                     label,
+                                                     ...props
+                                                 }) => {
+    console.log(props.value);
     return (
         <div className={s.labelInputBlock}>
             <label className={s.label}
-                   htmlFor={controlName}>
+                   htmlFor={label}>
                 {label}
             </label>
             <InputText {...props}
-                       id={controlName}
-                       value={value}
-                       onChange={(evt) => changeData(controlName, evt.target.value)}
+                       id={label}
             />
         </div>
     );
