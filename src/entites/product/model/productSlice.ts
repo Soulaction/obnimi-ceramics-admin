@@ -1,35 +1,35 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createUser, deleteUser, getAllUser, getUserById, updateUser} from "./userThunk";
-import {RoleType, UserType} from "../type/user.type";
+import {createUser, deleteUser, getAllUser, getUserById, updateUser} from "./productThunk";
+import {ProductType} from "../type/product.type";
 
-export type UserStore = {
-    users: UserType[];
-    selectedUser: UserType | null;
+export type ProductStore = {
+    products: ProductType[];
+    selectedProduct: ProductType | null;
     isLoadingItems: boolean,
     isLoadingItem: boolean,
     filterData: FilterData | null;
 }
 
 export type FilterData = {
-    email: string;
-    lastName: string;
-    firstName: string,
-    phone: string,
-    role: RoleType,
+    searchRow: string;
+    minPrice: number;
+    maxPrice: number,
+    productTypeId: number,
+    productCategoryId: number,
     page: number;
     size: number;
 }
 
-const initialState: UserStore = {
-    users: [],
-    selectedUser: null,
+const initialState: ProductStore = {
+    products: [],
+    selectedProduct: null,
     isLoadingItems: false,
     isLoadingItem: false,
     filterData: null
 }
 
-const userSlice = createSlice({
-    name: 'user',
+const productSlice = createSlice({
+    name: 'product',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -107,4 +107,4 @@ const userSlice = createSlice({
     },
 })
 
-export const userReducer = userSlice.reducer;
+export const productReducer = productSlice.reducer;

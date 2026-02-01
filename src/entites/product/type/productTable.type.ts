@@ -1,0 +1,1 @@
+export type ProductTableBtnType = 'plus';

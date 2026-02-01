@@ -30,8 +30,8 @@ export const createUser = createAsyncThunk<UserType[], CreateOrUpdateUserType,
     'user/createUser',
     async (user, {getState}) => {
         const {data} = await userApiService.createUser(user);
-        const users: RootState = getState();
-        return [data, ...users.user.users];
+        const state: RootState = getState();
+        return [data, ...state.user.users];
     },
 )
 
