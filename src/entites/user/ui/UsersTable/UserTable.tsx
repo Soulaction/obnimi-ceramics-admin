@@ -1,12 +1,12 @@
-import {FC, useEffect, useRef, useState} from 'react';
-import {Table, ContextMenu, ContextMenuRef, MenuItem, ConfirmDialog, showConfirmDialog} from 'ui-kit-dynamics';
+import {FC, useEffect, useState} from 'react';
+import {ConfirmDialog, MenuItem, showConfirmDialog} from 'ui-kit-dynamics';
 import {useAppDispatch, useAppSelector} from "../../../../app/store/hooks";
 import {deleteUser, getAllUser} from "../../model/userThunk";
-import {UserTableBtn} from "../UserTableBtn/UserTableBtn";
-import {UserTableBtnType} from "../../type/userTable.type";
-import {columnsUserTable} from "../../const/const";
-import {UserCreateAnaUpdateModal} from "../UserCreateAnaUIpdateModal/UserCreateAnaUpdateModal";
+import {UserCreateAnaUpdateModal} from "../UserCreateAnaUpdateModal/UserCreateAnaUpdateModal";
 import {UserType} from "../../type/user.type";
+import {TableAdmin} from "../../../../shared/ui/TableAdmin/TableAdmin";
+import {TableAdminBtnType} from "../../../../shared/type/tableAdmin.type";
+import {columnsUserTable} from "../../const/const";
 
 
 export const UserTable: FC = () => {
@@ -15,8 +15,6 @@ export const UserTable: FC = () => {
 
     const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
     const [isOpenCrateOrUpdateModal, setIsOpenCrateOrUpdateModal] = useState<boolean>(false);
-    const contextMenuRef = useRef<ContextMenuRef | null>(null);
-
 
     const menuItemUserTable: MenuItem[] = [
         {
@@ -33,7 +31,7 @@ export const UserTable: FC = () => {
     }, []);
 
 
-    const clickUserTableBtn = (typeBtn: UserTableBtnType) => {
+    const clickUserTableBtn = (typeBtn: TableAdminBtnType) => {
         if (typeBtn === 'plus') {
             showCrateOrUpdateModal(null);
         }
@@ -59,13 +57,14 @@ export const UserTable: FC = () => {
 
     return (
         <>
-            <Table column={columnsUserTable}
-                   TemplateHeader={<UserTableBtn clickCallback={clickUserTableBtn}></UserTableBtn>}
-                   rowKey={'id'}
-                   value={users}
-                   changeSelectedItem={setSelectedUser}
-                   contextMenuRef={contextMenuRef}/>
-            <ContextMenu items={menuItemUserTable} ref={contextMenuRef}/>
+            <TableAdmin<UserType | null> columns={columnsUserTable}
+                items={users}
+                selectedItem={selectedUser}
+                changeSelectedItem={(data) => setSelectedUser(data)}
+                isLoadingItems={isLoadingItems}
+                menuItemsTable={menuItemUserTable}
+                btns={['plus']}
+                clickUserTableBtn={clickUserTableBtn} />
             <UserCreateAnaUpdateModal isOpen={isOpenCrateOrUpdateModal}
                                       hideModal={() => setIsOpenCrateOrUpdateModal(false)}
                                       changeUser={selectedUser}/>

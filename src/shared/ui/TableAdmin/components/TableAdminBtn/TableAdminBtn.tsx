@@ -1,15 +1,14 @@
-import * as s from './UserTable.module.css';
-import {FC} from 'react';
+import * as s from './TableAdminBtn.module.css';
+import {FC, SyntheticEvent} from 'react';
 import {Button} from 'ui-kit-dynamics';
-import {UserTableBtnType} from '../../type/userTable.type';
+import {TableAdminBtnType} from "../../../../type/tableAdmin.type";
 
 type UserTableBtnProps = {
-    clickCallback: (userTableBtn: UserTableBtnType) => void;
+    clickCallback: (userTableBtn: TableAdminBtnType, evt: SyntheticEvent) => void;
+    btns: TableAdminBtnType[];
 }
 
-export const UserTableBtn: FC<UserTableBtnProps> = ({clickCallback}) => {
-    const btns: UserTableBtnType[] = ['plus'];
-
+export const TableAdminBtn: FC<UserTableBtnProps> = ({clickCallback, btns}) => {
     return (
         <div className={s.header}>
             <h1 className={s.headerTitle}>Пользователи</h1>
@@ -17,7 +16,7 @@ export const UserTableBtn: FC<UserTableBtnProps> = ({clickCallback}) => {
                 {
                     btns.map((btn) => <Button key={btn}
                                               iconName={btn}
-                                              onClick={() => clickCallback(btn)}>
+                                              onClick={(evt) => clickCallback(btn, evt)}>
                     </Button>)
                 }
             </div>

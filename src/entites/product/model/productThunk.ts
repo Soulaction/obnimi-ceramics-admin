@@ -22,7 +22,7 @@ export const getAllProduct = createAsyncThunk<ProductType[], void>(
     },
 )
 
-export const createProduct = createAsyncThunk<ProductType[], CreateOrUpdateProductType,
+export const createProduct = createAsyncThunk<CreateOrUpdateProductType[], CreateOrUpdateProductType,
     {
         state: RootState;
         rejectValue: string;
@@ -35,7 +35,7 @@ export const createProduct = createAsyncThunk<ProductType[], CreateOrUpdateProdu
     },
 )
 
-export const updateProduct = createAsyncThunk<ProductType, CreateOrUpdateProductType,
+export const updateProduct = createAsyncThunk<CreateOrUpdateProductType, CreateOrUpdateProductType,
     {
         state: RootState;
         rejectValue: string;
@@ -55,6 +55,6 @@ export const deleteProduct = createAsyncThunk<ProductType[], string,
     async (idItemBasket, {getState}) => {
         await productApiService.deleteProduct(idItemBasket);
         const state = getState();
-        return state.user.users.filter(el => el.id !== idItemBasket);
+        return state.product.products.filter(el => el.id !== idItemBasket);
     },
 )

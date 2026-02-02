@@ -1,9 +1,9 @@
 import * as s from './UserCreateAnaUpdateModal.module.css';
 import {FC, FormEvent, useEffect, useState} from 'react';
 import {Button, Dialog} from 'ui-kit-dynamics';
-import {CreateOrUpdateUserType, Roles, UserType} from "../../type/product.type";
+import {CreateOrUpdateUserType, Roles, UserType} from "../../type/user.type";
 import {useAppDispatch} from "../../../../app/store/hooks";
-import {createUser, updateUser} from "../../model/productThunk";
+import {createUser, updateUser} from "../../model/userThunk";
 import InputWithLabel from "../../../../shared/ui/InputWithLabel/InputWithLabel";
 import DropdownWithLabel from "../../../../shared/ui/DropdownWithLabel/DropdownWithLabel";
 
@@ -60,7 +60,6 @@ export const UserCreateAnaUpdateModal: FC<UserCreateAnaUpdateModalProps> = ({isO
         }
     }
 
-    console.log(changeUser);
     return (
         <Dialog header={changeUser ? 'Корректировка пользователя' : 'Добавление пользователя'}
                 visible={isOpen}
