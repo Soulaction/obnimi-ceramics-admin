@@ -59,16 +59,16 @@ export const ProductTable: FC = () => {
     return (
         <>
             <TableAdmin<ProductType | null> columns={columnsProductTable}
-                                            items={products}
-                                            selectedItem={selectedProduct}
-                                            changeSelectedItem={(data) => setSelectedProduct(data)}
-                                            isLoadingItems={isLoadingItems}
-                                            menuItemsTable={menuItemTable}
-                                            btns={['plus']}
-                                            clickUserTableBtn={clickTableBtn} />
+                                         items={products}
+                                         selectedItem={selectedProduct}
+                                         changeSelectedItem={(data) => setSelectedProduct(data)}
+                                         isLoadingItems={isLoadingItems}
+                                         menuItemsTable={menuItemTable}
+                                         btns={['plus']}
+                                         clickUserTableBtn={clickTableBtn} />
             <ProductCreateAnaUpdateModal isOpen={isOpenCrateOrUpdateModal}
                                          hideModal={() => setIsOpenCrateOrUpdateModal(false)}
-                                         changeProduct={selectedProduct}/>
+                                         changeUser={selectedProduct}/>
             <ConfirmDialog/>
         </>
     );

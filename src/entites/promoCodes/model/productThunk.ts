@@ -52,9 +52,9 @@ export const deleteProduct = createAsyncThunk<ProductType[], string,
         state: RootState;
     }>(
     'product/deleteProduct',
-    async (id, {getState}) => {
-        await productApiService.deleteProduct(id);
+    async (idItemBasket, {getState}) => {
+        await productApiService.deleteProduct(idItemBasket);
         const state = getState();
-        return state.product.products.filter(el => el.id !== id);
+        return state.product.products.filter(el => el.id !== idItemBasket);
     },
 )

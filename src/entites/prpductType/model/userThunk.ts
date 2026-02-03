@@ -52,9 +52,9 @@ export const deleteUser = createAsyncThunk<UserType[], string,
         state: RootState;
     }>(
     'user/deleteUser',
-    async (id, {getState}) => {
-        await userApiService.deleteUser(id);
+    async (idItemBasket, {getState}) => {
+        await userApiService.deleteUser(idItemBasket);
         const state = getState();
-        return state.user.users.filter(el => el.id !== id);
+        return state.user.users.filter(el => el.id !== idItemBasket);
     },
 )

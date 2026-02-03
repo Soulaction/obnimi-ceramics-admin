@@ -15,7 +15,7 @@ export const navigationList: NavigationItemType[] = [
         route: RouteApplication.productType
     },
     {
-        name: 'категории',
+        name: 'Категории',
         route: RouteApplication.productCategory
     },
     {

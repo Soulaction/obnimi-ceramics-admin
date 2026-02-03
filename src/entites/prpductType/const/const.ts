@@ -1,6 +1,10 @@
 import {Column} from 'ui-kit-dynamics';
 
-export const columnsProductTable: Column[] = [
+export const columnsUserTable: Column[] = [
+    {
+        header: 'ИД',
+        field: 'id',
+    },
     {
         header: 'Почта',
         field: 'email',

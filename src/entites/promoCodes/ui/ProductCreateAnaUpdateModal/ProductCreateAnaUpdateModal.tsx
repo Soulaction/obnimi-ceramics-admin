@@ -6,6 +6,7 @@ import {useAppDispatch} from "../../../../app/store/hooks";
 import InputWithLabel from "../../../../shared/ui/InputWithLabel/InputWithLabel";
 import DropdownWithLabel from "../../../../shared/ui/DropdownWithLabel/DropdownWithLabel";
 import {createProduct, updateProduct} from "../../model/productThunk";
+import {CreateOrUpdateUserType} from "../../../user/type/user.type";
 
 type UserCreateAnaUpdateModalProps = {
     isOpen: boolean;
@@ -13,9 +14,10 @@ type UserCreateAnaUpdateModalProps = {
     changeProduct: ProductType | null
 }
 
-const initCreateProduct: CreateOrUpdateProductType = {
+const initCreateProduct = {
     id: '',
     name: '',
+    firstName: '',
     description: '',
     price: '0',
     stockQuantity: 0,
