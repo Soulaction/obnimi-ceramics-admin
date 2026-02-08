@@ -9,7 +9,7 @@ import {
 
 export type ProductCategoryStore = {
     productCategories: ProductCategoryType[];
-    selectedProduct: ProductCategoryType | null;
+    selectedCategory: ProductCategoryType | null;
     isLoadingItems: boolean,
     isLoadingItem: boolean,
     filterData: FilterData | null;
@@ -23,7 +23,7 @@ export type FilterData = {
 
 const initialState: ProductCategoryStore = {
     productCategories: [],
-    selectedProduct: null,
+    selectedCategory: null,
     isLoadingItems: false,
     isLoadingItem: false,
     filterData: null
@@ -41,7 +41,7 @@ const productCategorySlice = createSlice({
             },
             fulfilled: (state, action) => {
                 console.log(action);
-                state.selectedProduct = action.payload
+                state.selectedCategory = action.payload
             },
             rejected: (state, action) => {
                 console.log(action);

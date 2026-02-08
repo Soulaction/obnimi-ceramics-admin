@@ -1,10 +1,16 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createUser, deleteUser, getAllUser, getUserById, updateUser} from "./productThunk";
-import {ProductType} from "../type/product.type";
+import {createSlice} from "@reduxjs/toolkit";
+import {TypeProductType} from "../type/typeProduct.type";
+import {
+    createTypeProduct,
+    deleteTypeProduct,
+    getAllTypeProduct,
+    getTypeProductById,
+    updateTypeProduct
+} from "./typesProductThunk";
 
-export type ProductStore = {
-    products: ProductType[];
-    selectedProduct: ProductType | null;
+export type TypeProductStore = {
+    typesProduct: TypeProductType[];
+    selectedTypeProduct: TypeProductType | null;
     isLoadingItems: boolean,
     isLoadingItem: boolean,
     filterData: FilterData | null;
@@ -12,49 +18,45 @@ export type ProductStore = {
 
 export type FilterData = {
     searchRow: string;
-    minPrice: number;
-    maxPrice: number,
-    productTypeId: number,
-    productCategoryId: number,
     page: number;
     size: number;
 }
 
-const initialState: ProductStore = {
-    products: [],
-    selectedProduct: null,
+const initialState: TypeProductStore = {
+    typesProduct: [],
+    selectedTypeProduct: null,
     isLoadingItems: false,
     isLoadingItem: false,
     filterData: null
 }
 
-const productSlice = createSlice({
-    name: 'product',
+const typeProductSlice = createSlice({
+    name: 'typeProduct',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addAsyncThunk(getUserById, {
+        builder.addAsyncThunk(getTypeProductById, {
             pending: (state, action) => {
                 console.log(action.payload);
                 state.isLoadingItem = true;
             },
             fulfilled: (state, action) => {
                 console.log(action);
-                state.selectedUser = action.payload
+                state.selectedTypeProduct = action.payload
             },
             rejected: (state, action) => {
                 console.log(action);
                 // state.error = action.error.
             }
         })
-        builder.addAsyncThunk(getAllUser, {
+        builder.addAsyncThunk(getAllTypeProduct, {
             pending: (state, action) => {
                 console.log(action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
                 console.log(action);
-                state.users = action.payload
+                state.typesProduct = action.payload
             },
             rejected: (state, action) => {
                 console.log(action);
@@ -62,42 +64,42 @@ const productSlice = createSlice({
                 state.isLoadingItems = false;
             }
         })
-        builder.addAsyncThunk(createUser, {
+        builder.addAsyncThunk(createTypeProduct, {
             pending: (state, action) => {
                 console.log('------', state, action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
                 console.log('------', state, action);
-                state.users = action.payload
+                state.typesProduct = action.payload
             },
             rejected: (state, action) => {
                 // state.error = action.error.
                 state.isLoadingItems = false;
             }
         })
-        builder.addAsyncThunk(updateUser, {
+        builder.addAsyncThunk(updateTypeProduct, {
             pending: (state, action) => {
                 console.log('------', state, action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
-                const changeUser = action.payload;
-                const allUsersWithoutChangeUser = state.users.filter(el => el.id !== changeUser.id);
-                state.users = [action.payload, ...allUsersWithoutChangeUser];
+                const changeTypeProduct = action.payload;
+                const allTypesProductWithoutChangeTypeProduct = state.typesProduct.filter(el => el.id !== changeTypeProduct.id);
+                state.typesProduct = [action.payload, ...allTypesProductWithoutChangeTypeProduct];
             },
             rejected: (state, action) => {
                 // state.error = action.error.
                 state.isLoadingItems = false;
             }
         })
-        builder.addAsyncThunk(deleteUser, {
+        builder.addAsyncThunk(deleteTypeProduct, {
             pending: (state, action) => {
                 console.log('------', state, action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
-                state.users = action.payload;
+                state.typesProduct = action.payload;
             },
             rejected: (state, action) => {
                 // state.error = action.error.
@@ -107,4 +109,4 @@ const productSlice = createSlice({
     },
 })
 
-export const productReducer = productSlice.reducer;
+export const typeProductReducer = typeProductSlice.reducer;

@@ -1,9 +1,9 @@
 import * as s from './UserCreateAnaUpdateModal.module.css';
 import {FC, FormEvent, useEffect, useState} from 'react';
 import {Button, Dialog} from 'ui-kit-dynamics';
-import {CreateOrUpdateUserType, Roles, UserType} from "../../type/user.type";
+import {CreateOrUpdateUserType, Roles, UserType} from "../../type/typeProduct.type";
 import {useAppDispatch} from "../../../../app/store/hooks";
-import {createUser, updateUser} from "../../model/userThunk";
+import {createUser, updateUser} from "../../model/typesProductThunk";
 import InputWithLabel from "../../../../shared/ui/InputWithLabel/InputWithLabel";
 import DropdownWithLabel from "../../../../shared/ui/DropdownWithLabel/DropdownWithLabel";
 

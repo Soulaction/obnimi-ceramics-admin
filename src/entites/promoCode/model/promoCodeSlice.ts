@@ -1,60 +1,61 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createUser, deleteUser, getAllUser, getUserById, updateUser} from "./userThunk";
-import {RoleType, UserType} from "../type/user.type";
+import {createSlice} from "@reduxjs/toolkit";
 
-export type UserStore = {
-    users: UserType[];
-    selectedUser: UserType | null;
+import { PromoCodeType} from "../type/promoCode.type";
+import {createPromoCode, deletePromoCode, getAllPromoCode, getPromoCodeById, updatePromoCode} from "./promoCodeThunk";
+
+export type PromoCodeStore = {
+    promoCodes: PromoCodeType[];
+    selectedPromoCode: PromoCodeType | null;
     isLoadingItems: boolean,
     isLoadingItem: boolean,
     filterData: FilterData | null;
 }
 
 export type FilterData = {
-    email: string;
-    lastName: string;
-    firstName: string,
-    phone: string,
-    role: RoleType,
+    searchRow: string;
+    minPrice: number;
+    maxPrice: number,
+    productTypeId: number,
+    productCategoryId: number,
     page: number;
     size: number;
 }
 
-const initialState: UserStore = {
-    users: [],
-    selectedUser: null,
+const initialState: PromoCodeStore = {
+    promoCodes: [],
+    selectedPromoCode: null,
     isLoadingItems: false,
     isLoadingItem: false,
     filterData: null
 }
 
-const userSlice = createSlice({
-    name: 'user',
+const promoCodeSlice = createSlice({
+    name: 'promoCode',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addAsyncThunk(getUserById, {
+        builder.addAsyncThunk(getPromoCodeById, {
             pending: (state, action) => {
                 console.log(action.payload);
                 state.isLoadingItem = true;
             },
             fulfilled: (state, action) => {
                 console.log(action);
-                state.selectedUser = action.payload
+                state.selectedPromoCode = action.payload
             },
             rejected: (state, action) => {
                 console.log(action);
                 // state.error = action.error.
             }
         })
-        builder.addAsyncThunk(getAllUser, {
+        builder.addAsyncThunk(getAllPromoCode, {
             pending: (state, action) => {
                 console.log(action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
                 console.log(action);
-                state.users = action.payload
+                state.promoCodes = action.payload
             },
             rejected: (state, action) => {
                 console.log(action);
@@ -62,42 +63,42 @@ const userSlice = createSlice({
                 state.isLoadingItems = false;
             }
         })
-        builder.addAsyncThunk(createUser, {
+        builder.addAsyncThunk(createPromoCode, {
             pending: (state, action) => {
                 console.log('------', state, action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
                 console.log('------', state, action);
-                state.users = action.payload
+                state.promoCodes = action.payload
             },
             rejected: (state, action) => {
                 // state.error = action.error.
                 state.isLoadingItems = false;
             }
         })
-        builder.addAsyncThunk(updateUser, {
+        builder.addAsyncThunk(updatePromoCode, {
             pending: (state, action) => {
                 console.log('------', state, action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
                 const changeUser = action.payload;
-                const allUsersWithoutChangeUser = state.users.filter(el => el.id !== changeUser.id);
-                state.users = [action.payload, ...allUsersWithoutChangeUser];
+                const allUsersWithoutChangeUser = state.promoCodes.filter(el => el.id !== changeUser.id);
+                state.promoCodes = [action.payload, ...allUsersWithoutChangeUser];
             },
             rejected: (state, action) => {
                 // state.error = action.error.
                 state.isLoadingItems = false;
             }
         })
-        builder.addAsyncThunk(deleteUser, {
+        builder.addAsyncThunk(deletePromoCode, {
             pending: (state, action) => {
                 console.log('------', state, action);
                 state.isLoadingItems = true;
             },
             fulfilled: (state, action) => {
-                state.users = action.payload;
+                state.promoCodes = action.payload;
             },
             rejected: (state, action) => {
                 // state.error = action.error.
@@ -107,4 +108,4 @@ const userSlice = createSlice({
     },
 })
 
-export const userReducer = userSlice.reducer;
+export const promoCodeReducer = promoCodeSlice.reducer;

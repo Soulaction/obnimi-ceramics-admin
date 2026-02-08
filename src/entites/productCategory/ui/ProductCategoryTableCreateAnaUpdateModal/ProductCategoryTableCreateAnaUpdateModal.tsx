@@ -45,7 +45,7 @@ export const ProductCategoryTableCreateAnaUpdateModal: FC<UserCreateAnaUpdateMod
     }
 
     return (
-        <Dialog header={changeProductCategory ? 'Корректировка товара' : 'Добавление товара'}
+        <Dialog header={changeProductCategory ? 'Корректировка категории товара' : 'Добавление категории товара'}
                 visible={isOpen}
                 onHide={hideModal}
         >

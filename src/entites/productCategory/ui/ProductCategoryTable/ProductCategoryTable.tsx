@@ -70,7 +70,7 @@ export const ProductCategoryTable: FC = () => {
                                                     clickUserTableBtn={clickTableBtn} />
             <ProductCategoryTableCreateAnaUpdateModal isOpen={isOpenCrateOrUpdateModal}
                                                       hideModal={() => setIsOpenCrateOrUpdateModal(false)}
-                                                      changeProductCategory={productCategories}/>
+                                                      changeProductCategory={selectedProductCategory}/>
             <ConfirmDialog/>
         </>
     );

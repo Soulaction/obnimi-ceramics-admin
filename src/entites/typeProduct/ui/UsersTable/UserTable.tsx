@@ -1,9 +1,9 @@
 import {FC, useEffect, useState} from 'react';
 import {ConfirmDialog, MenuItem, showConfirmDialog} from 'ui-kit-dynamics';
 import {useAppDispatch, useAppSelector} from "../../../../app/store/hooks";
-import {deleteUser, getAllUser} from "../../model/userThunk";
+import {deleteUser, getAllUser} from "../../model/typesProductThunk";
 import {UserCreateAnaUpdateModal} from "../UserCreateAnaUpdateModal/UserCreateAnaUpdateModal";
-import {UserType} from "../../type/user.type";
+import {UserType} from "../../type/typeProduct.type";
 import {TableAdmin} from "../../../../shared/ui/TableAdmin/TableAdmin";
 import {TableAdminBtnType} from "../../../../shared/type/tableAdmin.type";
 import {columnsUserTable} from "../../const/const";
