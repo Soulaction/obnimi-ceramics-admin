@@ -22,7 +22,7 @@ export const getAllProduct = createAsyncThunk<ProductType[], void>(
     },
 )
 
-export const createProduct = createAsyncThunk<CreateOrUpdateProductType[], CreateOrUpdateProductType,
+export const createProduct = createAsyncThunk<ProductType[], CreateOrUpdateProductType,
     {
         state: RootState;
         rejectValue: string;
@@ -35,7 +35,7 @@ export const createProduct = createAsyncThunk<CreateOrUpdateProductType[], Creat
     },
 )
 
-export const updateProduct = createAsyncThunk<CreateOrUpdateProductType, CreateOrUpdateProductType,
+export const updateProduct = createAsyncThunk<ProductType, CreateOrUpdateProductType,
     {
         state: RootState;
         rejectValue: string;

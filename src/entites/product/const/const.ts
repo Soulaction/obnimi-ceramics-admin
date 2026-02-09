@@ -2,24 +2,28 @@ import {Column} from 'ui-kit-dynamics';
 
 export const columnsProductTable: Column[] = [
     {
-        header: 'Почта',
-        field: 'email',
+        header: 'Наименование',
+        field: 'name',
     },
     {
-        header: 'Фамилия',
-        field: 'lastName',
+        header: 'Описание',
+        field: 'description',
     },
     {
-        header: 'Имя',
-        field: 'firstName',
+        header: 'Цена',
+        field: 'price',
     },
     {
-        header: 'Телефон',
-        field: 'phone',
+        header: 'Количество',
+        field: 'stockQuantity',
     },
     {
-        header: 'Роль',
-        field: 'role',
+        header: 'Тип',
+        field: 'productTypeId',
+    },
+    {
+        header: 'Дата созданя',
+        field: 'Категория',
     },
     {
         header: 'Дата созданя',

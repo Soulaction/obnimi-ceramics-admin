@@ -58,7 +58,7 @@ export const PromoCodeCreateAnaUpdateModal: FC<PromoCodeCreateAnaUpdateModalProp
     }
 
     return (
-        <Dialog header={changePromoCode ? 'Корректировка промокода' : 'Добавление промокода'}
+        <Dialog header={changePromoCode ? 'Корректировка промо-кода' : 'Добавление промокода'}
                 visible={isOpen}
                 onHide={hideModal}
         >

@@ -13,7 +13,7 @@ type TableAdminProps<T> = {
     isLoadingItems: boolean;
     menuItemsTable: MenuItem[];
     btns: TableAdminBtnType[];
-    clickUserTableBtn: (userTableBtn: TableAdminBtnType, evt: SyntheticEvent) => void;
+    clickTableBtn: (userTableBtn: TableAdminBtnType, evt: SyntheticEvent) => void;
 }
 
 export const TableAdmin = <T, >({
@@ -24,14 +24,14 @@ export const TableAdmin = <T, >({
                                         isLoadingItems,
                                         menuItemsTable,
                                         btns,
-                                        clickUserTableBtn
+                                        clickTableBtn
                                     }: TableAdminProps<T>) => {
     const contextMenuRef = useRef<ContextMenuRef | null>(null);
 
     return (
         <>
             <Table column={columns}
-                   TemplateHeader={<TableAdminBtn btns={btns} clickCallback={clickUserTableBtn}></TableAdminBtn>}
+                   TemplateHeader={<TableAdminBtn btns={btns} clickCallback={clickTableBtn}></TableAdminBtn>}
                    rowKey={'id'}
                    value={items}
                    selectedItem={selectedItem}

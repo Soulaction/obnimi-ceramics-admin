@@ -2,10 +2,10 @@ import {createBrowserRouter, RouteObject, Navigate} from "react-router-dom";
 import App from "../App";
 import UserPage from "../../pages/users/ui/UserPage";
 import ProductPage from "../../pages/product/ui/ProductPage";
-import ProductTypePage from "../../pages/product-type/ui/ProductTypePage";
-import ProductCategoryPage from "../../pages/product-category/ui/ProductCategoryPage";
-import PromoCodePage from "../../pages/promo-code/ui/PromoCodePage";
-import OrdersPage from "../../pages/orders/ui/OrdersPage";
+import ProductTypePage from "../../pages/typeProduct/ui/ProductTypePage";
+import ProductCategoryPage from "../../pages/productCategory/ui/ProductCategoryPage";
+import PromoCodePage from "../../pages/promoCode/ui/PromoCodePage";
+import OrdersPage from "../../pages/order/ui/OrderPage";
 
 
 const routes: RouteObject[] = [

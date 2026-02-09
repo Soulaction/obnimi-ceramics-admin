@@ -31,7 +31,7 @@ export const UserTable: FC = () => {
     }, []);
 
 
-    const clickUserTableBtn = (typeBtn: TableAdminBtnType) => {
+    const clickTableBtn = (typeBtn: TableAdminBtnType) => {
         if (typeBtn === 'plus') {
             showCrateOrUpdateModal(null);
         }
@@ -58,13 +58,13 @@ export const UserTable: FC = () => {
     return (
         <>
             <TableAdmin<UserType | null> columns={columnsUserTable}
-                items={users}
-                selectedItem={selectedUser}
-                changeSelectedItem={(data) => setSelectedUser(data)}
-                isLoadingItems={isLoadingItems}
-                menuItemsTable={menuItemUserTable}
-                btns={['plus']}
-                clickUserTableBtn={clickUserTableBtn} />
+                                         items={users}
+                                         selectedItem={selectedUser}
+                                         changeSelectedItem={(data) => setSelectedUser(data)}
+                                         isLoadingItems={isLoadingItems}
+                                         menuItemsTable={menuItemUserTable}
+                                         btns={['plus']}
+                                         clickTableBtn={clickTableBtn}/>
             <UserCreateAnaUpdateModal isOpen={isOpenCrateOrUpdateModal}
                                       hideModal={() => setIsOpenCrateOrUpdateModal(false)}
                                       changeUser={selectedUser}/>

@@ -1,10 +1,10 @@
 import React from 'react';
-import {Icon} from 'ui-kit-dynamics';
+import {ProductManagementPanel} from "../../../widgets/product/ui/ProductManagementPanel/ProductManagementPanel";
 
 const ProductPage = () => {
     return (
         <section>
-            Product1
+            <ProductManagementPanel/>
         </section>
     );
 };

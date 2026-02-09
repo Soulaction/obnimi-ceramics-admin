@@ -27,7 +27,7 @@ const listRole = [
 
 const initCreateUser = {
     id: '',
-    email: '',
+    login: '',
     firstName: '',
     lastName: '',
     phone: '',
@@ -68,9 +68,9 @@ export const UserCreateAnaUpdateModal: FC<UserCreateAnaUpdateModalProps> = ({isO
             <form className={s.form}
                   onSubmit={saveData}>
                 <div className={s.formFields}>
-                    <InputWithLabel label="Email"
-                                    value={newUser.email}
-                                    onChange={(evt) => changeData("email", evt.target.value)}
+                    <InputWithLabel label="Логин"
+                                    value={newUser.login}
+                                    onChange={(evt) => changeData("login", evt.target.value)}
                     />
                     <InputWithLabel label="Имя"
                                     value={newUser.firstName}

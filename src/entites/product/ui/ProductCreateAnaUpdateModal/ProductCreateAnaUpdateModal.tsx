@@ -7,7 +7,7 @@ import InputWithLabel from "../../../../shared/ui/InputWithLabel/InputWithLabel"
 import DropdownWithLabel from "../../../../shared/ui/DropdownWithLabel/DropdownWithLabel";
 import {createProduct, updateProduct} from "../../model/productThunk";
 
-type UserCreateAnaUpdateModalProps = {
+type ProductCreateAnaUpdateModalProps = {
     isOpen: boolean;
     hideModal: () => void;
     changeProduct: ProductType | null
@@ -23,7 +23,7 @@ const initCreateProduct: CreateOrUpdateProductType = {
     productCategoryId: 0
 };
 
-export const ProductCreateAnaUpdateModal: FC<UserCreateAnaUpdateModalProps> = ({isOpen, hideModal, changeProduct}) => {
+export const ProductCreateAnaUpdateModal: FC<ProductCreateAnaUpdateModalProps> = ({isOpen, hideModal, changeProduct}) => {
 
     const dispatch = useAppDispatch();
     const [newProduct, setNewProduct] = useState<CreateOrUpdateProductType>(initCreateProduct);

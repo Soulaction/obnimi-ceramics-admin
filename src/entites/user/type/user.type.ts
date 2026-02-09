@@ -2,7 +2,7 @@ import {ReturnKeyOfObject} from "../../../shared/utility-types";
 
 export type UserType = {
     id: string;
-    email: string;
+    login: string;
     lastName: string;
     firstName: string;
     phone: string;

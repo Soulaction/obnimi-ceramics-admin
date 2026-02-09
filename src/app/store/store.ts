@@ -4,6 +4,7 @@ import {productReducer} from "../../entites/product/model/productSlice";
 import {productCategoryReducer} from "../../entites/productCategory/model/productSlice";
 import {promoCodeReducer} from "../../entites/promoCode/model/promoCodeSlice";
 import {typeProductReducer} from "../../entites/typeProduct/model/typesProductSlice";
+import {ordersReducer} from "../../entites/order/model/orderSlice";
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     productCategory: productCategoryReducer,
     promoCode: promoCodeReducer,
     typeProduct: typeProductReducer,
+    order: ordersReducer,
 })
 
 export const store = configureStore({

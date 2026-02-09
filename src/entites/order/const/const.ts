@@ -1,12 +1,16 @@
 import {Column} from 'ui-kit-dynamics';
 
-export const columnsUserTable: Column[] = [
+export const columnsOrderTable: Column[] = [
     {
-        header: 'Логин',
+        header: 'Фамилия',
+        field: 'orderNumber',
+    },
+    {
+        header: 'Почта',
         field: 'login',
     },
     {
-        header: 'Фамилия',
+        header: 'Фамиля',
         field: 'lastName',
     },
     {
@@ -18,8 +22,16 @@ export const columnsUserTable: Column[] = [
         field: 'phone',
     },
     {
-        header: 'Роль',
-        field: 'role',
+        header: 'Статус',
+        field: 'status',
+    },
+    {
+        header: 'Адрес',
+        field: 'shippingAddress',
+    },
+    {
+        header: 'Комментарий',
+        field: 'comment',
     },
     {
         header: 'Дата созданя',

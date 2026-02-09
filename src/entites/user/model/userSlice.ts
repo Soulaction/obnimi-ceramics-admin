@@ -11,7 +11,7 @@ export type UserStore = {
 }
 
 export type FilterData = {
-    email: string;
+    login: string;
     lastName: string;
     firstName: string,
     phone: string,

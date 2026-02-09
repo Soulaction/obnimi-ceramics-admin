@@ -17,11 +17,11 @@ class ProductApiService {
         return await axiosInstanceServer.get(this.contextPath);
     }
 
-    async createProduct(product: CreateOrUpdateProductType): Promise<AxiosResponse<CreateOrUpdateProductType>> {
+    async createProduct(product: CreateOrUpdateProductType): Promise<AxiosResponse<ProductType>> {
         return await axiosInstanceServer.post(this.contextPath, product);
     }
 
-    async updateProduct(product: CreateOrUpdateProductType): Promise<AxiosResponse<CreateOrUpdateProductType>> {
+    async updateProduct(product: CreateOrUpdateProductType): Promise<AxiosResponse<ProductType>> {
         return await axiosInstanceServer.patch(this.contextPath, product);
     }
 

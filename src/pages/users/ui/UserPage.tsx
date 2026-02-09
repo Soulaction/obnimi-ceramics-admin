@@ -1,4 +1,4 @@
-import {UserManagementPanel} from "../../../widgets/users/ui/UserManagementPanel/UserManagementPanel";
+import {UserManagementPanel} from "../../../widgets/user/ui/UserManagementPanel/UserManagementPanel";
 
 const UserPage = () => {
 

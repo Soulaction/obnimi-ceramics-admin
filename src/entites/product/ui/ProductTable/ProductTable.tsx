@@ -65,7 +65,7 @@ export const ProductTable: FC = () => {
                                             isLoadingItems={isLoadingItems}
                                             menuItemsTable={menuItemTable}
                                             btns={['plus']}
-                                            clickUserTableBtn={clickTableBtn} />
+                                            clickTableBtn={clickTableBtn} />
             <ProductCreateAnaUpdateModal isOpen={isOpenCrateOrUpdateModal}
                                          hideModal={() => setIsOpenCrateOrUpdateModal(false)}
                                          changeProduct={selectedProduct}/>

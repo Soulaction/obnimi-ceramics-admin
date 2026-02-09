@@ -65,7 +65,7 @@ export const PromoCodeTable: FC = () => {
                                          isLoadingItems={isLoadingItems}
                                          menuItemsTable={menuItemTable}
                                          btns={['plus']}
-                                         clickUserTableBtn={clickTableBtn} />
+                                         clickTableBtn={clickTableBtn} />
             <PromoCodeCreateAnaUpdateModal isOpen={isOpenCrateOrUpdateModal}
                                            hideModal={() => setIsOpenCrateOrUpdateModal(false)}
                                            changePromoCode={selectedPromoCode}/>
